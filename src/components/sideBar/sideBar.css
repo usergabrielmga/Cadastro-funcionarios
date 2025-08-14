@@ -1,0 +1,17 @@
+.sidebar {
+    position: relative;
+    width: 300px;
+    height: 100vh;
+    border-right: #cecbcb dashed 1px;
+    padding: 20px;
+    left: 10px;
+}
+
+.logo {
+    width: 110px;
+}
+
+.arrow {
+    width: 20px;
+    height: 20px;
+}
