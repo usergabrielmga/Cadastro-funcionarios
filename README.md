@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+README.md
+Cadastro-funcionarios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sistema de cadastro de funcionários com interface responsiva, integração com Firebase e Material-UI.
 
-## Available Scripts
+Pré-requisitos
 
-In the project directory, you can run:
+Antes de começar, você precisa ter instalado em sua máquina:
 
-### `npm start`
+Node.js (versão LTS recomendada)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+npm ou yarn
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Instalação
 
-### `npm test`
+Clone o repositório:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+cd nome-do-repositorio
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Instale as dependências:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm install
+# ou
+yarn install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Configuração do Firebase
 
-### `npm run eject`
+Crie um projeto no Firebase.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Vá em Configurações do projeto > Geral > Suas apps e adicione uma app Web.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Copie as configurações do Firebase (apiKey, authDomain, projectId, etc).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Crie um arquivo .env na raiz do projeto:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+REACT_APP_API_KEY=your_api_key
+REACT_APP_AUTH_DOMAIN=your_auth_domain
+REACT_APP_PROJECT_ID=your_project_id
+REACT_APP_STORAGE_BUCKET=your_storage_bucket
+REACT_APP_MESSAGING_SENDER_ID=your_messaging_sender_id
+REACT_APP_APP_ID=your_app_id
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+No arquivo src/services/firebase.ts use as variáveis de ambiente:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+};
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+
+Rodando o Projeto
+
+Para iniciar o projeto em modo de desenvolvimento:
+
+npm start
+# ou
+yarn start
+
+
+O projeto será executado em http://localhost:3000 por padrão.
+
